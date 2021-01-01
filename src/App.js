@@ -70,10 +70,10 @@ class App extends React.Component {
     console.log("submit");
   };
 
-function App() {
-  return (
-    <div className="App">
-      <Particles className="particles" params={particles} />
+  render() {
+    return (
+      <div className="App">
+        <Particles className="particles" params={particles} />
         <Navigation />
         <Logo />
         <Rank />
@@ -82,8 +82,9 @@ function App() {
           onSubmit={this.onSubmit}
         />
         <FaceRecon box={this.state.box} imageUrl={this.state.input} />
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default App;
