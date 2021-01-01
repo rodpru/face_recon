@@ -41,8 +41,8 @@ class App extends React.Component {
     return {
       leftCol: faceBoxFromAPi.left_col * width,
       topRow: faceBoxFromAPi.top_row * height,
-      rightCol: width - faceBoxFromAPi.right_col * width,
-      bottomRow: height - faceBoxFromAPi.bottom_row * height,
+      rightCol: width - (faceBoxFromAPi.right_col * width),
+      bottomRow: height - (faceBoxFromAPi.bottom_row * height),
     };
   };
 

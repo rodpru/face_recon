@@ -1,6 +1,6 @@
 .bounding-box {
   position: absolute;
-  box-shadow: 0 0 0 3px grey inset;
+  box-shadow: 0 0 0 3px black inset;
   display: -webkit-box;
   display: -ms-flexbox;
   -ms-flex-wrap: wrap;
@@ -9,4 +9,5 @@
   -ms-flex-pack: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 1;
 }
