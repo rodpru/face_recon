@@ -7,6 +7,7 @@ import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm.js";
 import Rank from "./components/Rank/Rank.js";
 import Particles from "react-particles-js";
 import Clarifai from "clarifai";
+import SignIn from "./components/SignIn/SignIn";
 
 const particles = {
   particles: {
@@ -27,6 +28,7 @@ class App extends React.Component {
     input: "",
     imageUrl: "",
     box: "",
+    route: "signin",
   };
 
   // celeb name = console.log(response.outputs[0].data.regions[0].data.concepts[0].name);
@@ -41,8 +43,8 @@ class App extends React.Component {
     return {
       leftCol: faceBoxFromAPi.left_col * width,
       topRow: faceBoxFromAPi.top_row * height,
-      rightCol: width - (faceBoxFromAPi.right_col * width),
-      bottomRow: height - (faceBoxFromAPi.bottom_row * height),
+      rightCol: width - faceBoxFromAPi.right_col * width,
+      bottomRow: height - faceBoxFromAPi.bottom_row * height,
     };
   };
 
@@ -70,18 +72,29 @@ class App extends React.Component {
     console.log("submit");
   };
 
+  onRouteChange = (route) => {
+    this.setState({ route: route});
+  };
+
   render() {
     return (
       <div className="App">
         <Particles className="particles" params={particles} />
-        <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm
-          onInputChange={this.onInputChange}
-          onSubmit={this.onSubmit}
-        />
-        <FaceRecon box={this.state.box} imageUrl={this.state.input} />
+        <Navigation onRouteChange={this.onRouteChange} />
+        {this.state.route === "signin" ? (
+          <SignIn onRouteChange={this.onRouteChange} />
+        ) : (
+          <div>
+            {" "}
+            <Logo />
+            <Rank />
+            <ImageLinkForm
+              onInputChange={this.onInputChange}
+              onSubmit={this.onSubmit}
+            />
+            <FaceRecon box={this.state.box} imageUrl={this.state.input} />
+          </div>
+        )}
       </div>
     );
   }
